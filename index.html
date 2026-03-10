@@ -7,6 +7,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         html { scroll-behavior: smooth; }
+        
+        /* Custom Animation for Hero Background Images */
+        @keyframes fade1 {
+            0%, 45%, 100% { opacity: 1; }
+            50%, 95% { opacity: 0; }
+        }
+        @keyframes fade2 {
+            0%, 45%, 100% { opacity: 0; }
+            50%, 95% { opacity: 1; }
+        }
+        .hero-bg-1 { animation: fade1 12s infinite; transition: opacity 2s ease-in-out; }
+        .hero-bg-2 { animation: fade2 12s infinite; transition: opacity 2s ease-in-out; }
     </style>
 </head>
 <body class="bg-white text-gray-800 font-sans flex flex-col min-h-screen">
@@ -20,35 +32,56 @@
         </div>
     </div>
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+    <header class="bg-white shadow-md sticky top-0 z-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex justify-between items-center">
             <div class="text-3xl font-extrabold text-gray-900 tracking-tighter uppercase">
                 MB <span class="text-gray-500 font-light">Pro Build</span>
             </div>
+            
             <div class="hidden md:flex space-x-8 items-center font-medium text-gray-700">
                 <a href="#services" class="hover:text-gray-900 transition">Our Services</a>
+                <a href="#portfolio" class="hover:text-gray-900 transition">Portfolio</a>
                 <a href="#why-us" class="hover:text-gray-900 transition">Why Choose Us</a>
                 <a href="#contact" class="bg-gray-900 text-white px-6 py-3 text-sm tracking-wider uppercase hover:bg-gray-800 transition shadow-sm">Book Consultation</a>
             </div>
+
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-btn" class="text-gray-900 hover:text-gray-600 focus:outline-none p-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 flex flex-col z-50">
+            <a href="#services" class="mobile-link block px-6 py-4 text-lg font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50">Our Services</a>
+            <a href="#portfolio" class="mobile-link block px-6 py-4 text-lg font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50">Portfolio</a>
+            <a href="#why-us" class="mobile-link block px-6 py-4 text-lg font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50">Why Choose Us</a>
+            <a href="#contact" class="mobile-link block px-6 py-5 bg-gray-900 text-white text-center text-sm tracking-wider uppercase font-bold hover:bg-gray-800">Book Consultation</a>
         </div>
     </header>
 
     <main class="flex-grow">
-        <section class="relative bg-gray-100 py-24 md:py-32 border-b border-gray-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-                <h3 class="text-gray-500 tracking-widest uppercase text-sm font-semibold mb-4">Experts In Renovation</h3>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 mb-6 leading-tight max-w-4xl">
-                    Premier Residential Renovation Firm
+        <section class="relative py-32 md:py-40 flex items-center justify-center border-b border-gray-200 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center hero-bg-1" style="background-image: url(images/hero1.webp);"></div>
+            <div class="absolute inset-0 bg-cover bg-center hero-bg-2" style="background-image: url(images/hero2.webp);"></div>
+            <div class="absolute inset-0 bg-gray-900/60 z-0"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+                <h3 class="text-gray-300 tracking-widest uppercase text-sm font-semibold mb-4">Experts In Renovation</h3>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6 leading-tight max-w-4xl">
+                    Residential Commercial  Renovation Firm
                 </h1>
-                <p class="text-lg text-gray-600 max-w-3xl mb-10 leading-relaxed">
+                <p class="text-lg text-gray-200 max-w-3xl mb-10 leading-relaxed">
                     At MB Pro Build, we pride ourselves on delivering not just exceptional renovations, but a process that focuses on customer experience in Halton Hills and the Greater Toronto Area. From planning to implementation to completion, we manage the entire scope of your home renovation project.
                 </p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-                    <a href="#contact" class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 uppercase tracking-wider text-sm font-bold transition">
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 uppercase tracking-wider text-sm font-bold transition shadow-lg">
                         Start Your Project
                     </a>
-                    <a href="#services" class="bg-transparent border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white px-8 py-4 uppercase tracking-wider text-sm font-bold transition">
-                        View Our Services
+                    <a href="#portfolio" class="bg-transparent border border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 uppercase tracking-wider text-sm font-bold transition">
+                        View Our Work
                     </a>
                 </div>
             </div>
@@ -61,22 +94,96 @@
                     <div class="h-0.5 w-16 bg-gray-900 mx-auto"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="group relative bg-gray-50 p-10 border border-gray-100 hover:shadow-xl transition duration-300 flex flex-col justify-center items-center text-center">
-                        <h3 class="text-2xl font-serif text-gray-900 mb-4">Full Home Renovations</h3>
-                        <p class="text-gray-600 mb-6">Revolutionize the look and feel of your space. We handle complete home makeovers, managing the entire project from demolition to the final coat of paint.</p>
+                    <div class="group relative bg-cover bg-center p-12 hover:shadow-2xl transition duration-500 flex flex-col justify-center items-center text-center overflow-hidden min-h-[300px]" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="absolute inset-0 bg-gray-900/75 group-hover:bg-gray-900/60 transition duration-500"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-serif text-white mb-4">Full Home Renovations</h3>
+                            <p class="text-gray-300">Revolutionize the look and feel of your space. We handle complete home makeovers, managing the entire project from demolition to the final coat of paint.</p>
+                        </div>
                     </div>
-                    <div class="group relative bg-gray-50 p-10 border border-gray-100 hover:shadow-xl transition duration-300 flex flex-col justify-center items-center text-center">
-                        <h3 class="text-2xl font-serif text-gray-900 mb-4">Kitchen Renovations</h3>
-                        <p class="text-gray-600 mb-6">The heart of the home. We create custom, open-concept designs with luxury cabinetry, modern lighting, and beautiful quartz or granite countertops.</p>
+                    <div class="group relative bg-cover bg-center p-12 hover:shadow-2xl transition duration-500 flex flex-col justify-center items-center text-center overflow-hidden min-h-[300px]" style="background-image: url(images/kitchen.webp);">
+                        <div class="absolute inset-0 bg-gray-900/75 group-hover:bg-gray-900/60 transition duration-500"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-serif text-white mb-4">Kitchen Renovations</h3>
+                            <p class="text-gray-300">The heart of the home. We create custom, open-concept designs with luxury cabinetry, modern lighting, and beautiful quartz or granite countertops.</p>
+                        </div>
                     </div>
-                    <div class="group relative bg-gray-50 p-10 border border-gray-100 hover:shadow-xl transition duration-300 flex flex-col justify-center items-center text-center">
-                        <h3 class="text-2xl font-serif text-gray-900 mb-4">Bathroom Renovations</h3>
-                        <p class="text-gray-600 mb-6">Transform your bathroom into a private oasis with custom glass showers, freestanding tubs, heated flooring, and high-end plumbing fixtures.</p>
+                    <div class="group relative bg-cover bg-center p-12 hover:shadow-2xl transition duration-500 flex flex-col justify-center items-center text-center overflow-hidden min-h-[300px]" style="background-image: url(images/washroom.webp);">
+                        <div class="absolute inset-0 bg-gray-900/75 group-hover:bg-gray-900/60 transition duration-500"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-serif text-white mb-4">Bathroom Renovations</h3>
+                            <p class="text-gray-300">Transform your bathroom into a private oasis with custom glass showers, freestanding tubs, heated flooring, and high-end plumbing fixtures.</p>
+                        </div>
                     </div>
-                    <div class="group relative bg-gray-50 p-10 border border-gray-100 hover:shadow-xl transition duration-300 flex flex-col justify-center items-center text-center">
-                        <h3 class="text-2xl font-serif text-gray-900 mb-4">Basement Renovations</h3>
-                        <p class="text-gray-600 mb-6">Maximize your square footage and property value. We turn unfinished basements into living rooms, home theaters, and highly organized storage spaces.</p>
+                    <div class="group relative bg-cover bg-center p-12 hover:shadow-2xl transition duration-500 flex flex-col justify-center items-center text-center overflow-hidden min-h-[300px]" style="background-image: url(images/basement.webp);">
+                        <div class="absolute inset-0 bg-gray-900/75 group-hover:bg-gray-900/60 transition duration-500"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-serif text-white mb-4">Basement Renovations</h3>
+                            <p class="text-gray-300">Maximize your square footage and property value. We turn unfinished basements into living rooms, home theaters, and highly organized storage spaces.</p>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-20 bg-gray-50 border-t border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-serif text-gray-900 mb-4">Featured Projects</h2>
+                    <div class="h-0.5 w-16 bg-gray-900 mx-auto"></div>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Take a look at some of our recent transformations.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
+                    <div class="flex flex-col">
+                        <h3 class="text-2xl font-serif text-gray-900 mb-1">Modern Kitchen Overhaul</h3>
+                        <p class="text-sm text-gray-500 mb-4 uppercase tracking-wide">Georgetown, ON</p>
+                        <div class="w-full h-80 bg-cover bg-center mb-2 hover:opacity-90 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1556909190-eccf4a8bf97a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1556909212-d5b604d0c90d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <h3 class="text-2xl font-serif text-gray-900 mb-1">Luxury Master Ensuite</h3>
+                        <p class="text-sm text-gray-500 mb-4 uppercase tracking-wide">Oakville, ON</p>
+                        <div class="w-full h-80 bg-cover bg-center mb-2 hover:opacity-90 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1604709177227-3977c288f615?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1620626015694-550a80e1a12d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <h3 class="text-2xl font-serif text-gray-900 mb-1">Full Main Floor Remodel</h3>
+                        <p class="text-sm text-gray-500 mb-4 uppercase tracking-wide">Mississauga, ON</p>
+                        <div class="w-full h-80 bg-cover bg-center mb-2 hover:opacity-90 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1600607687931-ce8e00263560?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <h3 class="text-2xl font-serif text-gray-900 mb-1">Basement Entertainment Suite</h3>
+                        <p class="text-sm text-gray-500 mb-4 uppercase tracking-wide">Brampton, ON</p>
+                        <div class="w-full h-80 bg-cover bg-center mb-2 hover:opacity-90 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                            <div class="h-24 bg-cover bg-center hover:opacity-75 transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -128,7 +235,7 @@
                 <h2 class="text-3xl font-serif text-gray-900 mb-4">Book Your Consultation</h2>
                 <p class="text-gray-600 mb-10">No obligation necessary to proceed with an estimate. Submit your project details below.</p>
                 
-                <form action="#" method="POST" class="space-y-6 text-left">
+                <form action="https://formspree.io/f/xjgayaqw" method="POST" class="space-y-6 text-left">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
@@ -189,5 +296,33 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            // Hide the menu immediately
+            menu.style.display = 'none';
+
+            // Toggle menu on click
+            if (btn && menu) {
+                btn.addEventListener('click', function() {
+                    if (menu.style.display === 'none') {
+                        menu.style.display = 'flex';
+                    } else {
+                        menu.style.display = 'none';
+                    }
+                });
+            }
+
+            // Close menu when a link is clicked
+            mobileLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    menu.style.display = 'none';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -7,15 +7,61 @@
     </div>
 </div>
 
-<header class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+<header class="bg-white shadow-md sticky top-0 z-50 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex justify-between items-center">
         <div class="text-3xl font-extrabold text-gray-900 tracking-tighter uppercase">
             MB <span class="text-gray-500 font-light">Pro Build</span>
         </div>
+        
         <div class="hidden md:flex space-x-8 items-center font-medium text-gray-700">
             <a href="/#services" class="hover:text-gray-900 transition">Our Services</a>
+            <a href="/#portfolio" class="hover:text-gray-900 transition">Portfolio</a>
             <a href="/#why-us" class="hover:text-gray-900 transition">Why Choose Us</a>
             <a href="/#contact" class="bg-gray-900 text-white px-6 py-3 text-sm tracking-wider uppercase hover:bg-gray-800 transition shadow-sm">Book Consultation</a>
         </div>
+
+        <div class="md:hidden flex items-center">
+            <button id="mobile-menu-btn" class="text-gray-900 hover:text-gray-600 focus:outline-none p-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 flex flex-col z-50">
+        <a href="/#services" class="mobile-link block px-6 py-4 text-lg font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50">Our Services</a>
+        <a href="/#portfolio" class="mobile-link block px-6 py-4 text-lg font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50">Portfolio</a>
+        <a href="/#why-us" class="mobile-link block px-6 py-4 text-lg font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50">Why Choose Us</a>
+        <a href="/#contact" class="mobile-link block px-6 py-5 bg-gray-900 text-white text-center text-sm tracking-wider uppercase font-bold hover:bg-gray-800">Book Consultation</a>
     </div>
 </header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        // Make sure the menu starts completely hidden
+        menu.style.display = 'none';
+
+        // Toggle the menu with pure Javascript
+        if (btn && menu) {
+            btn.addEventListener('click', function() {
+                if (menu.style.display === 'none') {
+                    menu.style.display = 'flex';
+                } else {
+                    menu.style.display = 'none';
+                }
+            });
+        }
+
+        // Close the menu automatically when a link is tapped
+        mobileLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                menu.style.display = 'none';
+            });
+        });
+    });
+</script>
